@@ -13,9 +13,11 @@ const freshBooks = new Client(FRESH_BOOKS_CLIENT_ID, {
 });
 
 try {
+  // List Projects - returns error {message: "Unauthorized", code: "401"}
   const data = await freshBooks.projects.list(FRESH_BOOKS_BUSINESS_ID, []);
-  // const data = await freshBooks.clients.single(FRESH_BOOKS_BUSINESS_ID, 1234);
-  console.log(data);
+
+  // Get Identity - returns error {message: "This action requires...", code: "unauthenticated"}
+  const identity = await freshBooks.users.me();
 } catch (error) {
-  console.log(error);
+  console.log(JSON.stringify(error));
 }
